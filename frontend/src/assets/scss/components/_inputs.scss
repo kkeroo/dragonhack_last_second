@@ -1,0 +1,39 @@
+.input {
+    border: white;
+    border-bottom: 1px solid $dark-grey;
+    border-radius: 0;
+
+    &::placeholder {
+        color: $dark-grey !important;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    &:focus-visible, &:active, &:focus {
+        box-shadow: none !important;
+        border-bottom: 1px solid $brand-primary;
+    }
+
+    &-group {
+        position: relative;
+
+        &-icon {
+            img {
+                position: absolute;
+                right: 10px;
+                top: 9px;
+                z-index: 10;
+                filter: brightness(0) saturate(100%) invert(78%) sepia(17%) saturate(1454%) hue-rotate(344deg) brightness(90%) contrast(89%);
+            }
+        }
+
+        &-label .label {
+            position: absolute;
+            font-size: 14px;
+            color: $grey;
+            font-weight: 200;
+            bottom: -25px;
+            left: 12px;
+        }
+    }
+}
