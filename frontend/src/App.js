@@ -4,13 +4,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import React from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import './App.css';
 import SignIn  from './SignIn';
 import SignUp from './SignUp';
-import './style.css'
 import { useState } from "react";
 import axios from 'axios';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Menu from './components/MenuComponent';
+
 const stripePromise = loadStripe('pk_test_51N7IBYAJLTU2dEQVnjksDVbhGmCQjD9D0kIvnLdDCPc4hczDIqHERCrKSSf0EnppUhj7TPHwmWjSeyxc1ArFULCl00l9hiUgta');
 
 const firebaseConfig = {
@@ -70,6 +70,7 @@ const App = () => {
   };
   return (
     <div className="App">
+        <Menu></Menu>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<SignIn user={user} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSignIn={handleSignIn}></SignIn>}></Route>
