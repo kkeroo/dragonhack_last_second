@@ -9,9 +9,11 @@ const port = 5000;
 let serviceAccount = require('./data.json');
 
 let admin = require('firebase-admin');
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
-  });
+});
+
 const db = admin.firestore();
 
 // Middleware
@@ -30,7 +32,7 @@ app.get('/', (req, res) => {
 
 // Make a payment
 app.post('/create-payment-intent', async (req, res) => {
-  const { paymentMethodId, email } = req.body;
+  const { paymentMethodId, email, groupId } = req.body;
 
   if (!paymentMethodId) {
     res.status(400).send('Missing payment method ID');
@@ -70,6 +72,12 @@ app.post('/create-payment-intent', async (req, res) => {
       payment_method: paymentMethodId,
       off_session: true,  // Indicates that the customer is not in your checkout flow at the time of this payment attempt
       confirm: true,  // Automatically confirm the payment
+    });
+
+    // Update the 'budget' field in the group document
+    const groupRef = db.collection('groups').doc(groupId);
+    await groupRef.update({
+      budget: admin.firestore.FieldValue.increment(1000 / 100),  // Convert from cents to dollars before adding to the budget
     });
 
     // Respond with the client secret

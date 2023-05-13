@@ -24,7 +24,6 @@ const PaymentForm = ({ user, handlePayment }) => {
       console.log('[error]', error);
     } else {
         setPaymentMethod(paymentMethod);
-      // const response = await fetch('http://localhost:5000/save-payment-method', {
         const response = await fetch('http://localhost:5000/add-payment-method', {
         method: 'POST',
         headers: {
