@@ -1,8 +1,10 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import axios from 'axios';
 import logo from './logo-plachilko.svg';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = (props) => {
+    const navigate = useNavigate();
     return (
             <div>
                 <div className='container' style={{marginTop: '25vh'}}>
@@ -23,6 +25,8 @@ const SignUp = (props) => {
                                 <input type="password" value={props.password} onChange={(e) => props.setPassword(e.target.value)} className="form-control input input-text" id="" placeholder="Password" />
                             </div>
                             <a onClick={props.handleSignUp} className="btn btn-primary btn-text my-1">Signup</a>
+                            <br/>
+                            <a onClick={() => navigate('/')} class="btn btn-dark btn-text my-1">Login</a>
                         </div>
                     </div>
                 </div>
