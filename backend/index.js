@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 5000;
+require('dotenv').config();
 const bodyParser = require('body-parser');
-const stripe = require('stripe')('sk_test_51N7IBYAJLTU2dEQVhL5xBioCWOYojuTck0LN3JRegAdOqa9XuKPJnkedr8wIrOKwRxShQLCozYbGwOdodt6yh2KK0049xdwToX');  // Use your test secret key
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const cors = require('cors');
+const port = 5000;
 
 // Middleware
 app.use(express.json());
@@ -19,20 +20,46 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-
 app.post('/create-payment-intent', async (req, res) => {
-  const { paymentMethodId } = req.body;
+  const { paymentMethodId, email } = req.body;
 
   if (!paymentMethodId) {
     res.status(400).send('Missing payment method ID');
     return;
   }
 
+  if (!email) {
+    res.status(400).send('Missing email');
+    return;
+  }
+
   try {
+    // Check if customer with the provided email already exists
+    const existingCustomers = await stripe.customers.list({ email: email });
+
+    let customerId;
+
+    if (existingCustomers.data.length) {
+      // If customer already exists, get their ID
+      customerId = existingCustomers.data[0].id;
+    } else {
+      // If customer does not exist, create a new customer
+      const customer = await stripe.customers.create({ email: email });
+      customerId = customer.id;
+    }
+
+    // Attach the payment method to the customer
+    await stripe.paymentMethods.attach(paymentMethodId, { customer: customerId });
+
+    // Set the payment method as the default for the customer
+    await stripe.customers.update(customerId, { invoice_settings: { default_payment_method: paymentMethodId } });
+
     const paymentIntent = await stripe.paymentIntents.create({
       amount: 1000,  // amount in the smallest currency unit (cents for USD)
       currency: 'usd',
+      customer: customerId,
       payment_method: paymentMethodId,
+      off_session: true,  // Indicates that the customer is not in your checkout flow at the time of this payment attempt
       confirm: true,  // Automatically confirm the payment
     });
 
@@ -43,6 +70,7 @@ app.post('/create-payment-intent', async (req, res) => {
     res.status(500).send('Failed to create payment intent');
   }
 });
+
 
 // Start the server
 app.listen(port, () => {
