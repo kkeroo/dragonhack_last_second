@@ -1,6 +1,7 @@
 .btn {
     border-radius: 35px;
     color: white !important;
+    min-width: 220px;
 
     &-text {
         padding: 10px 30px;
@@ -26,6 +27,7 @@
 
         &:hover, &:focus-visible {
             background-color: $brand-secondary !important;
+            color: white !important;
         }
     }
 
@@ -35,6 +37,7 @@
 
         &:hover, &:focus-visible {
             background-color: $black !important;
+            color: white !important;
         }
     }
 }

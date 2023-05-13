@@ -14,7 +14,7 @@ const Menu = () => {
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container">
                     <a className="navbar-brand" href="#">
-                        <img src={logo} />
+                        <img src={logo} height="15"/>
                     </a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -26,11 +26,6 @@ const Menu = () => {
                             <li className="nav-item">
                                 <a className="nav-link" href="#">
                                     Groups
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">
-                                    Profile
                                 </a>
                             </li>
                             <li className="nav-item">

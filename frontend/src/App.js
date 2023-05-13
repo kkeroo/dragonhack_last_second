@@ -6,6 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import SignIn  from './SignIn';
 import SignUp from './SignUp';
+import GroupView from './GroupView';
 import { useState } from "react";
 import axios from 'axios';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -75,6 +76,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<SignIn user={user} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSignIn={handleSignIn}></SignIn>}></Route>
             <Route path='signup' element={<SignUp email={email} username={username} password={password} setEmail={setEmail} setPassword={setPassword} setUsername={setUsername} handleSignUp={handleSignUp}></SignUp>}></Route>
+            <Route path='group' element={<GroupView></GroupView>}></Route>
           </Routes>
         </BrowserRouter>
     </div>
