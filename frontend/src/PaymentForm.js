@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const PaymentForm = ({ handlePayment }) => {
+const PaymentForm = ({ user, handlePayment }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [paymentMethod, setPaymentMethod] = useState(null);
@@ -23,18 +23,20 @@ const PaymentForm = ({ handlePayment }) => {
     if (error) {
       console.log('[error]', error);
     } else {
-      setPaymentMethod(paymentMethod);
-      const response = await fetch('http://localhost:5000/save-payment-method', {
+        setPaymentMethod(paymentMethod);
+      // const response = await fetch('http://localhost:5000/save-payment-method', {
+        const response = await fetch('http://localhost:5000/add-payment-method', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          uid: user,
           paymentMethodId: paymentMethod.id
         })
       });
-      const customer = await response.json();
-      console.log('[Customer]', customer);
+      // const customer = await response.json();
+      // console.log('[Customer]', customer);
     }
   };
 

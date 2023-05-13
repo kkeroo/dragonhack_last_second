@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PaymentForm from './PaymentForm';
 import FundPool from './FundPool';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
   const [fundSize, setFundSize] = useState(0);
 
   const handlePayment = async (paymentMethod) => {
@@ -32,7 +32,7 @@ const CheckoutForm = () => {
 
   return (
     <div>
-      <PaymentForm handlePayment={handlePayment} />
+      <PaymentForm user={props.user} handlePayment={handlePayment} />
       <FundPool fundSize={fundSize} />
     </div>
   );
