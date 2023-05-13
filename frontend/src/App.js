@@ -30,8 +30,6 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  // const auth = getAuth();
-
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
@@ -74,7 +72,7 @@ const App = () => {
     <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<SignIn email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSignIn={handleSignIn}></SignIn>}></Route>
+            <Route path='/' element={<SignIn user={user} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSignIn={handleSignIn}></SignIn>}></Route>
             <Route path='signup' element={<SignUp email={email} username={username} password={password} setEmail={setEmail} setPassword={setPassword} setUsername={setUsername} handleSignUp={handleSignUp}></SignUp>}></Route>
           </Routes>
         </BrowserRouter>
