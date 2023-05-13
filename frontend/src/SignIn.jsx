@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { initializeApp } from '@firebase/app';
 
 const firebaseConfig = {
@@ -17,11 +18,13 @@ const auth = getAuth(firebase);
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [user, loading, error] = useAuthState(auth);
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('Signed in successfully');
+        let userId = user.uid;
       })
       .catch((error) => {
         console.error('Error signing in:', error);
