@@ -42,6 +42,8 @@ const GROUP_TRANSACTIONS = [
     },
 ];
 
+let AMOUNT = 402.52;
+
 const GroupView = (props) => {
     const [showFundsModal, setShowFundsModal] = useState(false);
     const [showTransactionModal, setShowTransactionModal] = useState(false);
@@ -75,6 +77,14 @@ const GroupView = (props) => {
         </div>
     ));
 
+    const [groupAmount, setGroupAmount] = useState(AMOUNT);
+    const addFunds = () => {
+        const addedFunds = parseFloat(document.getElementById("addFundsValue").value);
+        const newValue = groupAmount + addedFunds;
+        setGroupAmount(newValue);
+        hideFundsModal();
+    };
+
     const [groupTransactions, setGroupTransactions] = useState(GROUP_TRANSACTIONS);
     const addTransaction = () => {
         const transactionName = document.getElementById("transactionName").value;
@@ -82,14 +92,17 @@ const GroupView = (props) => {
         const newTransaction = {
             id: "t4",
             name: transactionName,
-            amount: transactionAmount
+            amount: transactionAmount,
         };
+
+        const newValue = groupAmount - transactionAmount;
+        setGroupAmount(newValue);
         setGroupTransactions([...groupTransactions, newTransaction]);
         hideTransactionModal();
     };
 
     const transactionList = groupTransactions.map((transaction) => (
-        <div className="list-item d-flex flex-row justify-content-between">
+        <div className="list-item d-flex flex-row justify-content-between" key={transaction.id}>
             <div>
                 <div className="list-item__title">{transaction.name}</div>
                 <div className="list-item__desc light subtitle">Amount: {transaction.amount}</div>
@@ -106,12 +119,30 @@ const GroupView = (props) => {
                 </Modal.Header>
                 <Modal.Body className="p-4">
                     <div className="input-group input-group-icon mb-3 mt-2">
-                        <input type="number" className="form-control input input-icon" placeholder="Add funds" />
+                        <input type="number" className="form-control input input-icon" id="addFundsValue" placeholder="Add funds" />
                         <img src="./assets/img/icons/currency-eur.svg" className="img-fluid" height="20" width="20" />
+                    </div>
+                    <div className="input-group mb-3">
+                        <input type="number" className="form-control input input-text" placeholder="Card number" />
+                    </div>
+                    <div className="input-group mb-3">
+                        <input type="text" className="form-control input input-text" placeholder="Card holder" />
+                    </div>
+                    <div className="row">
+                        <div className="col-6">
+                            <div className="input-group mb-3">
+                                <input type="number" className="form-control input input-text" placeholder="CCV" />
+                            </div>
+                        </div>
+                        <div className="col-6">
+                            <div className="input-group mb-3">
+                                <input type="number" className="form-control input input-text" placeholder="Expiration date" />
+                            </div>
+                        </div>
                     </div>
                 </Modal.Body>
                 <Modal.Footer className="justify-content-center">
-                    <Button className="btn btn-primary btn-icon my-1" onClick={hideFundsModal}>
+                    <Button className="btn btn-primary btn-icon my-1" onClick={addFunds}>
                         Add funds
                         <img src="./assets/img/icons/check.svg" />
                     </Button>
@@ -165,7 +196,7 @@ const GroupView = (props) => {
                 <div className="mt-3 text-center">
                     <div className="title">V blagajni</div>
                     <div className="group-amount mt-3">
-                        400,00<span className="small">€</span>
+                        {groupAmount} <span className="small">€</span>
                     </div>
                 </div>
                 <div className="mt-4 text-center">

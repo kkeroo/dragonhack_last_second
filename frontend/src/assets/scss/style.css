@@ -12040,6 +12040,9 @@ textarea.form-control-lg {
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.0509803922);
   border-radius: 10px;
 }
+.group-users .user-username {
+  line-height: 1.2;
+}
 .group-users .user img {
   filter: brightness(0) saturate(100%) invert(78%) sepia(17%) saturate(1454%) hue-rotate(344deg) brightness(90%) contrast(89%);
 }
