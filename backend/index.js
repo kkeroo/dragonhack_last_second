@@ -38,10 +38,45 @@ app.post('/register', (req, res) => {
     });
 });
 
+const getGroup = (groupId) => {
+    return new Promise ((resolve, reject) => {
+        const groupsCollection = db.collection('groups');
+        groupsCollection.doc(groupId).get().then(groupDoc => {
+            if (!groupDoc){
+                resolve(null);
+            }
+            else{
+                const groupData = groupDoc.data();
+                resolve(groupData);
+            }
+        }).catch(err => {
+            reject(err);
+        });
+    })
+}
+
+app.get('/groups/:groupID', (req, res) => {
+    let groupId = req.params.groupID;
+    getGroup(groupId).then(doc => {
+        if (doc == null){
+            console.log('No group found');
+            res.status(404).send('No group found');
+        }
+        else{
+            console.log('Successfully retrieved group with id: ' + doc.id);
+            res.status(200).json(doc);
+        }
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send('Internal server error');
+    });
+});
+
 app.post('/groups', (req, res) => {
     const group = {
         name: req.body.name,
-        users: req.body.users
+        users: req.body.users,
+        budget: 0.0
     };
     const groups = db.collection('groups');
     groups.add(group).then(doc => {
@@ -70,6 +105,31 @@ app.get('/users/:userID/groups', (req, res) => {
     });
 });
 
+const updateGroupBudget = (groupId, price) => {
+    return new Promise((resolve, reject) => {
+        getGroup(groupId).then(group => {
+            if (group == null){
+                reject('Can not find the group');
+            }
+            else{
+                let budget = group.budget;
+                if (budget - price < 0){
+                    // Not enough funds
+                    reject('Not enough funds in pool');
+                }
+                let newBudget = budget - price;
+                db.collection('groups').doc(groupId).update({ budget: newBudget }).then(() => {
+                    resolve('Budget updated from ' + budget + ' to ' + newBudget);
+                }).catch(err => {
+                    reject('Error updating field budget', err);
+                });
+            }
+        }).catch(err => {
+            reject(err);
+        });
+    });
+}
+
 app.post('/expenses', (req, res) => {
     let expense = {
         uid: req.body.uid,
@@ -79,12 +139,18 @@ app.post('/expenses', (req, res) => {
         createdAt: new Date()
     };
     const expensesCollection = db.collection('expenses');
-    expensesCollection.add(expense).then(doc => {
-        console.log('Expense document created with ID:', doc.id);
-        res.status(201).send('Expense document created');
+    updateGroupBudget(expense.groupId, expense.expensePrice).then(message => {
+        console.log(message);
+        expensesCollection.add(expense).then(doc => {
+            console.log('Expense document created with ID:', doc.id);
+            res.status(201).send('Expense document created');
+        }).catch(err => {
+            console.error('Error creating expense document:', err);
+            res.status(500).send('Error creating expense document');
+        });
     }).catch(err => {
-        console.error('Error creating expense document:', err);
-        res.status(500).send('Error creating expense document');
+        console.error('Error updating expense budget', err);
+        res.status(500).send('Error updating expense budget');
     });
 });
 
