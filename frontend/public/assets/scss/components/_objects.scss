@@ -1,0 +1,28 @@
+.breadcrumbs {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.group {
+    &-amount {
+        font-family: "Montserrat", sans-serif;
+        font-size: 64px;
+        font-weight: 400;
+
+        .small {
+            font-size: 22px;
+        }
+    }
+
+    &-users {
+        .user {
+            height: 130px;
+            border: 1px solid $grey;
+            border-radius: 10px;
+
+            img {
+                filter: brightness(0) saturate(100%) invert(78%) sepia(17%) saturate(1454%) hue-rotate(344deg) brightness(90%) contrast(89%);
+            }
+        }
+    }
+}
