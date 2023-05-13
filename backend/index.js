@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8000;
 
 let serviceAccount = require('./data.json');
 let admin = require('firebase-admin');
