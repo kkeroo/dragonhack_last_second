@@ -31,22 +31,14 @@ Ever struggled with managing funds when hanging out with friends? Can't remember
 
 ## 🦸‍♂️ The Last Second Team
 
-* [Person 1](https://github.com/person1) - The night owl 🦉
-* [Person 2](https://github.com/person2) - Code ninja 🐱‍👤
-* [Person 3](https://github.com/person3) - Bug exterminator 🐞
-* [Person 4](https://github.com/person4) - Coffee brewer ☕
-* [Person 5](https://github.com/person5) - The Git keeper 🗝️
+* [Tomaž Šagaj](https://github.com/person1) - Frontend Ninja 🥷
+* [Jaša Kerec](https://github.com/person2) - Backend Wizard 1🧙
+* [Brin Colnar](https://github.com/person3) - Backend Wizard 2 🧙
 
 ## 🏆 Acknowledgements
 
-We'd like to thank the organisers of this hackathon for giving us an opportunity to build Plachilko. We'd also like to thank our endless supply of energy drinks for keeping us awake. We knew those countless hours spent arguing over tabs vs spaces would come in handy one day!
-
-**Disclaimer:** No sleep cycles were harmed in the making of this app. Well, maybe a few... 😴
+We'd like to thank the organisers and sponsors of this hackathon for giving us an opportunity to build Plachilko. 
 
 ## 📝 License
 
 This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
-
-## 🌙 Last but not least
-
-Happy Hacking! And remember - it's not a bug, it's a feature! 😉
