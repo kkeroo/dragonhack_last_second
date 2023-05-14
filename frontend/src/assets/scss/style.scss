@@ -1,0 +1,21 @@
+// imported sizes, colors etc.
+@import './abstract/variables.scss';
+@import './abstract/fonts';
+
+// imported base visibility styles
+@import './base/visibility.scss';
+@import './base/body';
+
+// imported bootstrap from node_modules
+@import './vendor/bootstrap';
+
+// components
+@import './components/buttons';
+@import './components/inputs';
+@import './components/objects';
+@import './components/list-items';
+
+// layout
+@import './layout/header';
+
+// pages

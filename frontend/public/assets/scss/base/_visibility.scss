@@ -1,0 +1,16 @@
+.hide-small {
+    @media screen and (max-width: $medium) {
+        display: none !important;
+    }
+}
+
+.hide-large {
+    @media screen and (min-width: $medium) {
+        display: none !important;
+    }
+}
+
+.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
