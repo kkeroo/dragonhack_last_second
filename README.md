@@ -36,6 +36,10 @@ Ever struggled with managing funds when hanging out with friends? Can't remember
 * [Jaša Kerec](https://github.com/kkeroo)
 * [Brin Colnar](https://github.com/brincolnar)
 
+## 🎨 Design
+
+![Design preview image](design.svg)
+
 ## 🏆 Acknowledgements
 
 We'd like to thank the organisers and sponsors of this hackathon for giving us an opportunity to build Plachilko. 
