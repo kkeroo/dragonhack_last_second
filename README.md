@@ -2,7 +2,7 @@
 
 Brought to you by team Last Second, because who needs sleep when you have unlimited energy drinks and a burning passion to code?
 
-![Plachilko Logo](https://link-to-your-logo.com/logo.png)
+![Plachilko Logo](frontend/src/assets/img/logo-plachilko.svg)
 
 ## 🚀 Introduction
 

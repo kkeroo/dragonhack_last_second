@@ -11954,6 +11954,7 @@ textarea.form-control-lg {
 .btn {
   border-radius: 35px;
   color: white !important;
+  min-width: 220px;
 }
 .btn-text {
   padding: 10px 30px;
@@ -11976,6 +11977,7 @@ textarea.form-control-lg {
 }
 .btn-primary:hover, .btn-primary:focus-visible {
   background-color: #bc8e48 !important;
+  color: white !important;
 }
 .btn-dark {
   background-color: #272727;
@@ -11983,6 +11985,7 @@ textarea.form-control-lg {
 }
 .btn-dark:hover, .btn-dark:focus-visible {
   background-color: #000000 !important;
+  color: white !important;
 }
 
 .input {
@@ -12033,8 +12036,12 @@ textarea.form-control-lg {
 }
 .group-users .user {
   height: 130px;
-  border: 1px solid #4E4E4E;
+  border: 1px solid #ececec;
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.0509803922);
   border-radius: 10px;
+}
+.group-users .user-username {
+  line-height: 1.2;
 }
 .group-users .user img {
   filter: brightness(0) saturate(100%) invert(78%) sepia(17%) saturate(1454%) hue-rotate(344deg) brightness(90%) contrast(89%);
