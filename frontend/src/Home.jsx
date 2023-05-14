@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -42,7 +41,7 @@ const NewGroup = (props) => {
                 <div>
                     <a onClick={handleAddGroup} class="btn btn-primary btn-icon my-1">
                         Create group
-                        <img src="./assets/img/icons/plus.svg" />
+                        <img src="./assets/img/icons/check.svg" />
                     </a>
                 </div>
             </Modal.Footer>
@@ -54,13 +53,13 @@ const Home = (props) => {
     const navigate = useNavigate();
     const [groups, setGroups] = useState([
         { gid: '1', name: 'Summer Ibiza 2k23', budget: 402.52, users: ['2131', 'sada', '23121', 'sd', 's'] },
-        { gid: '1', name: 'Skiing 2k22', budget: 1000, users: ['2131', 'sada'] }
+        { gid: '2', name: 'Skiing 2k22', budget: 1000, users: ['2131', 'sada'] }
     ]);
     const [show, setShow] = useState(false);
 
     return (
         <div className="container">
-            <div className="row justify-content-center" style={{ marginTop: '15vh' }}>
+            <div className="row justify-content-center" style={{ marginTop: '10vh' }}>
                 <div class="title text-center">My Groups</div>
                 <div className="col-md-4 mt-4">
                     <div class="list list-group">
@@ -75,9 +74,9 @@ const Home = (props) => {
                         })}
                     </div>
                     <div class="text-center">
-                        <a onClick={() => setShow(true)} class="btn btn-primary btn-icon my-1 mt-3">
+                        <a onClick={() => setShow(true)} class="btn btn-primary btn-icon mt-5">
                             Create new group
-                            <img src="./assets/img/icons/check.svg" />
+                            <img src="./assets/img/icons/account-multiple-plus.svg" />
                         </a>
                     </div>
                 </div>

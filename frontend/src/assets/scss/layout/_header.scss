@@ -19,7 +19,18 @@
         font-size: 20px;
 
         &:hover {
-            color: $brand-primary;
+            color: $brand-primary !important;
         }
     }
+}
+
+.nav-link {
+    &:hover {
+        color: $brand-primary !important;
+        cursor: pointer;
+    }
+}
+
+.navbar-brand:hover {
+    cursor: pointer;
 }

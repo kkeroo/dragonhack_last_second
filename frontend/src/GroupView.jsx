@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 
 const GROUP_USERS = [
     {
@@ -113,7 +113,7 @@ const GroupView = (props) => {
             id: "t4",
             name: transactionName,
             owner: "Sadia Bruce",
-            amount: transactionAmount
+            amount: transactionAmount,
         };
 
         const newValue = groupAmount - transactionAmount;
@@ -122,16 +122,15 @@ const GroupView = (props) => {
         hideTransactionModal();
     };
 
-
     const handleShowDetails = (transaction) => {
         openDetailsModal();
         setTransactionDetails(transaction);
-    }
+    };
 
     const navigate = useNavigate();
 
     const transactionList = groupTransactions.map((transaction) => (
-        <div className="list-item d-flex flex-row justify-content-between" key={transaction.id} onClick={() => handleShowDetails(transaction)} >
+        <div className="list-item d-flex flex-row justify-content-between" key={transaction.id} onClick={() => handleShowDetails(transaction)}>
             <div>
                 <div className="list-item__title">{transaction.name}</div>
                 <div className="list-item__desc light subtitle">Amount: {transaction.amount}</div>
@@ -153,22 +152,19 @@ const GroupView = (props) => {
             setFirstPress(true);
             setScore(1);
             setStartTime(time);
-        }
-        else {
+        } else {
             let diff = Math.abs(time.getTime() - startTime.getTime()) / 1000;
             if (diff > 3) {
                 setFinishGame(true);
-            }
-            else {
+            } else {
                 setScore(score + 1);
             }
-
         }
-    }
+    };
 
     const endGame = () => {
         alert(score);
-    }
+    };
 
     return (
         <div className="mb-5">
@@ -234,16 +230,14 @@ const GroupView = (props) => {
                     <Modal.Title>Close group</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="p-4">
-                    <div>
-                        Are you sure you want to close this group?
-                    </div>
+                    <div>Are you sure you want to close this group?</div>
                 </Modal.Body>
                 <Modal.Footer className="justify-content-center border-0">
                     <Button className="btn btn-primary btn-icon mb-2" onClick={playMinigame}>
                         Play minigame
                         <img src="./assets/img/icons/check.svg" />
                     </Button>
-                    <Button className="btn btn-dark btn-icon" onClick={() => navigate('/redistribute')}>
+                    <Button className="btn btn-dark btn-icon" onClick={() => navigate("/redistribute")}>
                         Redistribute
                         <img src="./assets/img/icons/cash-multiple.svg" />
                     </Button>
@@ -254,16 +248,25 @@ const GroupView = (props) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Minigame</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="p-4 text-center">
+                <Modal.Body className="p-4 pb-0 text-center">
                     <div class="subtitle">Play minigame and win the remaining funds. Press the button as many times as you can in 3 seconds.</div>
-                    <div className="title my-2">Score: <span class="primary">{score}</span></div>
-                    <a onClick={handleClickMe} hidden={finishGame} class="btn btn-primary btn-icon my-3">
+                    <div className="title my-2">
+                        Score: <span class="primary">{score}</span>
+                    </div>
+                    <div className="subtitle my-2" hidden={!finishGame}>
+                        Your score is <span className="primary">{score}</span>, which is more than your friends.
+                        <br /> You get <span className="title">{AMOUNT}</span> €.
+                    </div>
+                </Modal.Body>
+                <Modal.Footer className="border-0 justify-content-center">
+                    <Button hidden={finishGame} onClick={handleClickMe} className="btn btn-primary btn-icon">
                         Click me!
                         <img src="./assets/img/icons/check.svg" />
-                    </a>
-                    <div className="subtitle my-2" hidden={!finishGame}>Your score is <span className="primary">{score}</span>, which is more than your friends.<br /> You get <span className="title">{AMOUNT}</span> €.</div>
-                    <a hidden={!finishGame} onClick={() => navigate('/home')} class="btn btn-dark btn-text my-1">Back to home screen</a>
-                </Modal.Body>
+                    </Button>
+                    <Button hidden={!finishGame} onClick={() => navigate("/home")} className="btn btn-dark btn-text">
+                        Back to home screen
+                    </Button>
+                </Modal.Footer>
             </Modal>
 
             <Modal show={showPeopleModal} onHide={hidePeopleModal}>
@@ -313,12 +316,17 @@ const GroupView = (props) => {
             </Modal>
 
             <div className="container mt-3">
-                <a className="breadcrumbs d-flex flex-row mb-3" href="#" onClick={() => {navigate('/home')}}>
+                <a
+                    className="breadcrumbs d-flex flex-row mb-3"
+                    href="#"
+                    onClick={() => {
+                        navigate("/home");
+                    }}>
                     <img src="./assets/img/icons/back-arrow.svg" className="img-fluid me-2" />
-                    Groups
+                    Summer Ibiza 2k23
                 </a>
                 <div className="mt-3 text-center">
-                    <div className="title">V blagajni</div>
+                    <div className="title">Group budget</div>
                     <div className="group-amount mt-3">
                         {groupAmount} <span className="small">€</span>
                     </div>
@@ -344,7 +352,9 @@ const GroupView = (props) => {
                             <div className="row">
                                 {usersList}
                                 <div className="col-4">
-                                    <div onClick={openPeopleModal} className="user add-user d-flex flex-column justify-content-evenly align-items-center text-center my-2 p-3 cursor-pointer">
+                                    <div
+                                        onClick={openPeopleModal}
+                                        className="user add-user d-flex flex-column justify-content-evenly align-items-center text-center my-2 p-3 cursor-pointer">
                                         <img src="./assets/img/icons/plus.svg" className="img-fluid" height="40" width="40" />
                                         <div className="user-username">Add user</div>
                                     </div>

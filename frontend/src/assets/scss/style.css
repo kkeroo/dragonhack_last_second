@@ -34,7 +34,7 @@ a:hover {
 }
 
 .title {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .subtitle {
@@ -12043,9 +12043,14 @@ textarea.form-control-lg {
   border: 1px solid #ececec;
   box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.0509803922);
   border-radius: 10px;
+  transition: 0.3s;
 }
 .group-users .user-username {
   line-height: 1.2;
+}
+.group-users .user:hover {
+  cursor: pointer;
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1411764706);
 }
 .group-users .user img {
   filter: brightness(0) saturate(100%) invert(78%) sepia(17%) saturate(1454%) hue-rotate(344deg) brightness(90%) contrast(89%);
@@ -12103,5 +12108,14 @@ textarea.form-control-lg {
   font-size: 20px;
 }
 #mobileMenu .link:hover {
-  color: #DBA553;
+  color: #DBA553 !important;
+}
+
+.nav-link:hover {
+  color: #DBA553 !important;
+  cursor: pointer;
+}
+
+.navbar-brand:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
