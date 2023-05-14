@@ -38,19 +38,20 @@ const App = () => {
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((response) => {
-        console.log('Signed in successfully');
-        let userId = response.user.uid;
-        axios({
-          method: "GET",
-          url: "http://localhost:8000/users/"+userId
-        }).then(response => {
-          setUserId(response.data.uid);
-        });
+    .then((response) => {
+      console.log('Signed in successfully');
+      let userId = response.user.uid;
+
+      axios({
+        method: "GET",
+        url: "http://localhost:8000/users/"+userId
+      }).then(response => {
+        setUserId(response.data.uid);
       })
       .catch((error) => {
         console.error('Error signing in:', error);
-      });
+      })
+    })
   };
 
   const handleSignUp = () => {
