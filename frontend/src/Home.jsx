@@ -14,7 +14,7 @@ const NewGroup = (props) => {
 
     const handleAddGroup = () => {
         props.setGroups([
-            {gid: '1', name: 'Summer Ibiza 2k23', budget: 450, users: ['2131', 'sada', '23121', 'sd', 's']},
+            {gid: '1', name: 'Summer Ibiza 2k23', budget: 402.52, users: ['2131', 'sada', '23121', 'sd', 's']},
             {gid: '2', name: 'Skiing 2k22', budget: 1000, users: ['2131', 'sada']},
             {gid: '3', name: 'Trip to Vienna', budget: 500, users: ['Sadia Bruce', 'Eryn Hobbs', 'Everly Clark']}
         ])
@@ -54,7 +54,7 @@ const NewGroup = (props) => {
 const Home = (props) => {
     const navigate = useNavigate();
     const [groups, setGroups] = useState([
-        {gid: '1', name: 'Summer Ibiza 2k23', budget: 450, users: ['2131', 'sada', '23121', 'sd', 's']},
+        {gid: '1', name: 'Summer Ibiza 2k23', budget: 402.52, users: ['2131', 'sada', '23121', 'sd', 's']},
         {gid: '1', name: 'Skiing 2k22', budget: 1000, users: ['2131', 'sada']}
     ]);
     const [show, setShow] = useState(false);
@@ -66,7 +66,7 @@ const Home = (props) => {
                 <div className="col-md-4 mt-4">
                     <div class="list list-group">
                         {groups.map((group, i) => {
-                            return (<div class="list-item" key={group.gid} onClick={() => {navigate('/group-details')}}>
+                            return (<div class="list-item" key={group.gid} onClick={() => {navigate('/group')}}>
                                 <div class="list-item__title">{group.name}</div>
                                 <div class="list-item__details d-flex flex-row justify-content-between">
                                     <div class="details-people primary subtitle">{group.users.length} users</div>

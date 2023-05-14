@@ -50,6 +50,10 @@ a:hover {
   color: #DBA553;
 }
 
+.transaction-info__text {
+  line-height: 1;
+}
+
 /*!
  * Bootstrap  v5.3.0-alpha3 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -12067,6 +12071,9 @@ textarea.form-control-lg {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-top: none;
+}
+.list-item:hover {
+  cursor: pointer;
 }
 .list-item img.info, .list-item .invite-accept {
   filter: brightness(0) saturate(100%) invert(78%) sepia(17%) saturate(1454%) hue-rotate(344deg) brightness(90%) contrast(89%);
