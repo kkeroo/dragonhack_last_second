@@ -29,16 +29,19 @@ const GROUP_TRANSACTIONS = [
     {
         id: "t1",
         name: "Gas",
+        owner: "Regan Short",
         amount: "70,00",
     },
     {
         id: "t2",
         name: "Groceries",
+        owner: "Sadia Bruce",
         amount: "35,23",
     },
     {
         id: "t3",
         name: "Tickets",
+        owner: "Jonah Potts",
         amount: "60,60",
     },
 ];
@@ -49,6 +52,8 @@ const GroupView = (props) => {
     const [showFundsModal, setShowFundsModal] = useState(false);
     const [showTransactionModal, setShowTransactionModal] = useState(false);
     const [showPeopleModal, setShowPeopleModal] = useState(false);
+    const [showDetailsModal, setShowDetailsModal] = useState(false);
+    const [transactionDetails, setTransactionDetails] = useState();
     const [showCloseModal, setShowCloseModal] = useState(false);
     const [showMinigameModal, setshowMinigameModal] = useState(false);
     const [firstPress, setFirstPress] = useState(false);
@@ -62,6 +67,8 @@ const GroupView = (props) => {
     const openTransactionModal = () => setShowTransactionModal(true);
     const hidePeopleModal = () => setShowPeopleModal(false);
     const openPeopleModal = () => setShowPeopleModal(true);
+    const hideDetailsModal = () => setShowDetailsModal(false);
+    const openDetailsModal = () => setShowDetailsModal(true);
     const hideCloseModal = () => setShowCloseModal(false);
     const openCloseModal = () => setShowCloseModal(true);
     const hideMinigameModal = () => setshowMinigameModal(false);
@@ -105,7 +112,8 @@ const GroupView = (props) => {
         const newTransaction = {
             id: "t4",
             name: transactionName,
-            amount: transactionAmount,
+            owne: "Sadia Bruce",
+            amount: transactionAmount
         };
 
         const newValue = groupAmount - transactionAmount;
@@ -114,10 +122,17 @@ const GroupView = (props) => {
         hideTransactionModal();
     };
 
+
+    const handleShowDetails = (transaction) => {
+        openDetailsModal();
+        setTransactionDetails(transaction);
+    }
+
     const navigate = useNavigate();
 
+
     const transactionList = groupTransactions.map((transaction) => (
-        <div className="list-item d-flex flex-row justify-content-between" key={transaction.id}>
+        <div className="list-item d-flex flex-row justify-content-between" key={transaction.id} onClick={() => handleShowDetails(transaction)} >
             <div>
                 <div className="list-item__title">{transaction.name}</div>
                 <div className="list-item__desc light subtitle">Amount: {transaction.amount}</div>
@@ -186,7 +201,7 @@ const GroupView = (props) => {
                         </div>
                     </div>
                 </Modal.Body>
-                <Modal.Footer className="justify-content-center">
+                <Modal.Footer className="justify-content-center border-0">
                     <Button className="btn btn-primary btn-icon my-1" onClick={addFunds}>
                         Add funds
                         <img src="./assets/img/icons/check.svg" />
@@ -199,15 +214,15 @@ const GroupView = (props) => {
                     <Modal.Title>Add transaction</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="p-4">
-                    <div className="input-group my-2">
+                    <div className="input-group mb-3">
                         <input type="text" className="form-control input input-text" id="transactionName" placeholder="Transaction name" />
                     </div>
-                    <div className="input-group input-group-icon my-4">
+                    <div className="input-group input-group-icon mb-3">
                         <input type="number" className="form-control input input-icon" id="transactionAmount" placeholder="Price" />
                         <img src="./assets/img/icons/currency-eur.svg" className="img-fluid" height="20" width="20" />
                     </div>
                 </Modal.Body>
-                <Modal.Footer className="justify-content-center">
+                <Modal.Footer className="justify-content-center border-0">
                     <Button className="btn btn-primary btn-icon my-1" onClick={addTransaction}>
                         Add transaction
                         <img src="./assets/img/icons/check.svg" />
@@ -259,10 +274,38 @@ const GroupView = (props) => {
                         <div className="label">You can add up to 10 users.</div>
                     </div>
                 </Modal.Body>
-                <Modal.Footer className="justify-content-center">
+                <Modal.Footer className="justify-content-center border-0">
                     <Button className="btn btn-primary btn-icon my-1" onClick={addUser}>
                         Add user
                         <img src="./assets/img/icons/check.svg" />
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showDetailsModal} onHide={hideDetailsModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Transaction details</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="p-4">
+                    <div className="transaction-modal">
+                        <div className="transaction-info mb-3">
+                            <div className="transaction-info__label subtitle primary">Transaciton title</div>
+                            <div className="transaction-info__text title">{transactionDetails.name}</div>
+                        </div>
+                        <div className="transaction-info mb-3">
+                            <div className="transaction-info__label subtitle primary">Transaciton creator</div>
+                            <div className="transaction-info__text title">{transactionDetails.owner}</div>
+                        </div>
+                        <div className="transaction-info">
+                            <div className="transaction-info__label subtitle primary">Amount</div>
+                            <div className="transaction-info__text title">{transactionDetails.amount}</div>
+                        </div>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer className="justify-content-center border-0">
+                    <Button className="btn btn-dark btn-icon my-1" onClick={hideDetailsModal}>
+                        Close
+                        <img src="./assets/img/icons/window-close.svg" />
                     </Button>
                 </Modal.Footer>
             </Modal>
