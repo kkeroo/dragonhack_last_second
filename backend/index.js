@@ -4,8 +4,7 @@ const app = express();
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const cors = require('cors');
-const port = 5000;
+const port = 8000;
 
 let serviceAccount = require('./data.json');
 
@@ -78,6 +77,19 @@ app.post('/create-payment-intent', async (req, res) => {
     console.error(err);
     res.status(500).send('Failed to create payment intent');
   }
+});
+
+app.get('/users/:userID', (req, res) => {
+    let userID = req.params.userID;
+    const users = db.collection('users');
+    users.where('uid', '==', userID).get().then(querySnapshot => {
+        let users = [];
+        querySnapshot.forEach(user => {
+            const userData = user.data();
+            users.push(userData);
+        });
+        res.status(200).json(users[0]);
+    });
 });
 
 // Registration
