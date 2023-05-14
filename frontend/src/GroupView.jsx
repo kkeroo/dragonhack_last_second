@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const GROUP_USERS = [
     {
@@ -243,8 +243,8 @@ const GroupView = (props) => {
                         Play minigame
                         <img src="./assets/img/icons/check.svg" />
                     </Button>
-                    <Button className="btn btn-dark btn-icon" onClick={addTransaction}>
-                        Split equally
+                    <Button as={Link} to="/redistribute" className="btn btn-dark btn-icon" onClick={addTransaction}>
+                        Redistribute
                         <img src="./assets/img/icons/cash-multiple.svg" />
                     </Button>
                 </Modal.Footer>
