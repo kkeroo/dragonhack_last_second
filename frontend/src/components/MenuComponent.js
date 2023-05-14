@@ -13,6 +13,7 @@ const Menu = (props) => {
     const handleSignout = () => {
         props.signOut(props.auth).then(() => {
             // Sign-out successful.
+            window.location.href = 'http://localhost:3000/'
             console.log("Signed out successfully")
         }).catch((error) => {
             // An error happened.
@@ -23,18 +24,13 @@ const Menu = (props) => {
         <div>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container">
-                    <a className="navbar-brand" href="#">
+                    <a className="navbar-brand" href="" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
                         <img src={logo} height="15"/>
                     </a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href="" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
                                     Groups
                                 </a>
                             </li>
@@ -59,13 +55,10 @@ const Menu = (props) => {
                             <img src={menuCloser} className="img-fluid" width="32" id="mobileMenuCloser" onClick={closeMenu} />
                         </div>
                         <div className="mobile-menu__links d-flex flex-column text-center">
-                            <a className="link mb-3" href="javascript:void(0)">
-                                Home
-                            </a>
-                            <a className="link mb-3" href="javascript:void(0)">
+                            <a className="link mb-3" href="" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
                                 Groups
                             </a>
-                            <a className="link mb-3" href="javascript:void(0)">
+                            <a className="link mb-3" href="" onClick={handleSignout}>
                                 Signout
                             </a>
                         </div>

@@ -17,7 +17,8 @@ const NewGroup = (props) => {
             { gid: '1', name: 'Summer Ibiza 2k23', budget: 402.52, users: ['2131', 'sada', '23121', 'sd', 's'] },
             { gid: '2', name: 'Skiing 2k22', budget: 1000, users: ['2131', 'sada'] },
             { gid: '3', name: 'Trip to Vienna', budget: 500, users: ['Sadia Bruce', 'Eryn Hobbs', 'Everly Clark'] }
-        ])
+        ]);
+        props.setShow(false);
     }
     return (
         <Modal show={props.show} onHide={props.onClose}>
@@ -81,7 +82,7 @@ const Home = (props) => {
                     </div>
                 </div>
             </div>
-            <NewGroup show={show} setGroups={setGroups} onClose={() => setShow(false)}></NewGroup>
+            <NewGroup show={show} setShow={setShow} setGroups={setGroups} onClose={() => setShow(false)}></NewGroup>
         </div>
     );
 };
