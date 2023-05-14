@@ -12,6 +12,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Menu from './components/MenuComponent';
+import Redistribute from './Redistribute';
 
 const stripePromise = loadStripe('pk_test_51N7IBYAJLTU2dEQVnjksDVbhGmCQjD9D0kIvnLdDCPc4hczDIqHERCrKSSf0EnppUhj7TPHwmWjSeyxc1ArFULCl00l9hiUgta');
 
@@ -86,6 +87,7 @@ const App = () => {
             <Route path='signup' element={<SignUp email={email} username={username} password={password} setEmail={setEmail} setPassword={setPassword} setUsername={setUsername} handleSignUp={handleSignUp}></SignUp>}></Route>
             <Route path='home' element={<Home userId={userId}></Home>}></Route>
             <Route path='group' element={<GroupView></GroupView>}></Route>
+            <Route path='redistribute' element={<Redistribute />}></Route>
           </Routes>
         </BrowserRouter>
     </div>
