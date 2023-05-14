@@ -2,19 +2,29 @@ import React, { useState } from "react";
 import logo from "../assets/img/logo-plachilko.svg";
 import menuOpener from "../assets/img/icons/menu.svg";
 import menuCloser from "../assets/img/icons/window-close.svg";
+import { useNavigate } from 'react-router-dom';
 
-const Menu = () => {
+const Menu = (props) => {
     const [top, setTop] = useState("-100%");
 
     const openMenu = () => setTop("0");
     const closeMenu = () => setTop("-100%");
+
+    const handleSignout = () => {
+        props.signOut(props.auth).then(() => {
+            // Sign-out successful.
+            console.log("Signed out successfully")
+        }).catch((error) => {
+            // An error happened.
+        });
+    };
 
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container">
                     <a className="navbar-brand" href="#">
-                        <img src={logo} />
+                        <img src={logo} height="15"/>
                     </a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -29,12 +39,7 @@ const Menu = () => {
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
-                                    Profile
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <a className="nav-link" href='#' onClick={handleSignout}>
                                     Signout
                                 </a>
                             </li>
@@ -59,9 +64,6 @@ const Menu = () => {
                             </a>
                             <a className="link mb-3" href="javascript:void(0)">
                                 Groups
-                            </a>
-                            <a className="link mb-3" href="javascript:void(0)">
-                                Profile
                             </a>
                             <a className="link mb-3" href="javascript:void(0)">
                                 Signout
