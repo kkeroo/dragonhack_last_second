@@ -26,9 +26,11 @@ Ever struggled with managing funds when hanging out with friends? Can't remember
 
 1. Clone this repository: `git clone https://github.com/last-second/plachilko.git`
 2. Switch to *last-second* branch: `git checkout last-second`
-3. Install dependencies in backend: `npm install` and run the server: `node index.js`
-4. Install dependencies in frontend: `npm install` and run the client: `npm start`
-5. Visit `http://localhost:3000` and let the magic unfold!
+3. Install dependencies in backend: `npm install`
+4. Replace *data_template.json* with your Firebase admin credentials
+5. Run the server: `node index.js`
+6. Install dependencies in frontend: `npm install` and run the client: `npm start`
+7. Visit `http://localhost:3000` and let the magic unfold!
 
 ## 🦸‍♂️ The Last Second Team
 
