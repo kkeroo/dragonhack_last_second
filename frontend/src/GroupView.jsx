@@ -313,9 +313,9 @@ const GroupView = (props) => {
             </Modal>
 
             <div className="container mt-3">
-                <a className="breadcrumbs d-flex flex-row mb-3" href="#">
+                <a className="breadcrumbs d-flex flex-row mb-3" href="#" onClick={() => {navigate('/home')}}>
                     <img src="./assets/img/icons/back-arrow.svg" className="img-fluid me-2" />
-                    Ibiza 2k23
+                    Groups
                 </a>
                 <div className="mt-3 text-center">
                     <div className="title">V blagajni</div>
