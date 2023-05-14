@@ -10,7 +10,7 @@ const Redistribute = () => {
     }
 
     return (
-        <div classNameName='container text-center'>
+        <div className='container text-center'>
             <div className="row justify-content-center">
                 <div className="col-md-4">
                     <div className="container">
