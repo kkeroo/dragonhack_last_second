@@ -9,7 +9,7 @@ const SignIn = (props) => {
     const navigate = useNavigate();
     useEffect(() => {
         if (props.user){
-            // navigate('/');
+            navigate('/home');
         }
     }, props.user);
     return (

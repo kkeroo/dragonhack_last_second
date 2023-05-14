@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
 import { initializeApp } from '@firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import React from 'react';
@@ -6,6 +6,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import SignIn  from './SignIn';
 import SignUp from './SignUp';
+import Home from './Home';
 import GroupView from './GroupView';
 import { useState } from "react";
 import axios from 'axios';
@@ -31,11 +32,18 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+      .then((response) => {
         console.log('Signed in successfully');
-        let userId = user.uid;
+        let userId = response.user.uid;
+        axios({
+          method: "GET",
+          url: "http://localhost:8000/users/"+userId
+        }).then(response => {
+          setUserId(response.data.uid);
+        });
       })
       .catch((error) => {
         console.error('Error signing in:', error);
@@ -71,11 +79,12 @@ const App = () => {
   };
   return (
     <div className="App">
-        <Menu></Menu>
+        <Menu auth={auth} signOut={signOut}></Menu>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<SignIn user={user} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSignIn={handleSignIn}></SignIn>}></Route>
             <Route path='signup' element={<SignUp email={email} username={username} password={password} setEmail={setEmail} setPassword={setPassword} setUsername={setUsername} handleSignUp={handleSignUp}></SignUp>}></Route>
+            <Route path='home' element={<Home userId={userId}></Home>}></Route>
             <Route path='group' element={<GroupView></GroupView>}></Route>
           </Routes>
         </BrowserRouter>
