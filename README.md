@@ -25,15 +25,16 @@ Ever struggled with managing funds when hanging out with friends? Can't remember
 ## 🔧 Installation and Setup
 
 1. Clone this repository: `git clone https://github.com/last-second/plachilko.git`
-2. Install dependencies: `npm install`
-3. Start the server: `npm start`
-4. Visit `http://localhost:3000` and let the magic unfold!
+2. Switch to *last-second* branch: `git checkout last-second`
+3. Install dependencies in backend: `npm install` and run the server: `node index.js`
+4. Install dependencies in frontend: `npm install` and run the client: `npm start`
+5. Visit `http://localhost:3000` and let the magic unfold!
 
 ## 🦸‍♂️ The Last Second Team
 
-* [Tomaž Šagaj](https://github.com/person1) - Frontend Ninja 🥷
-* [Jaša Kerec](https://github.com/person2) - Backend Wizard 1🧙
-* [Brin Colnar](https://github.com/person3) - Backend Wizard 2 🧙
+* [Tomaž Šagaj](https://github.com/mh7x)
+* [Jaša Kerec](https://github.com/kkeroo)
+* [Brin Colnar](https://github.com/brincolnar)
 
 ## 🏆 Acknowledgements
 
