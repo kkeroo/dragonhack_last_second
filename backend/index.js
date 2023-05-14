@@ -236,6 +236,7 @@ app.get('/groups/:groupID/expenses', (req, res) => {
             expenses.push(expense);
         });
         res.status(200).json(expenses);
+        console.log('d')
     }).catch(err => {
         console.error('Error retrieving expenses:', err);
         res.status(500).send('Error retrieving expenses');
