@@ -53,7 +53,7 @@ const GroupView = (props) => {
     const [showTransactionModal, setShowTransactionModal] = useState(false);
     const [showPeopleModal, setShowPeopleModal] = useState(false);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
-    const [transactionDetails, setTransactionDetails] = useState();
+    const [transactionDetails, setTransactionDetails] = useState(GROUP_TRANSACTIONS[0]);
     const [showCloseModal, setShowCloseModal] = useState(false);
     const [showMinigameModal, setshowMinigameModal] = useState(false);
     const [firstPress, setFirstPress] = useState(false);
@@ -112,7 +112,7 @@ const GroupView = (props) => {
         const newTransaction = {
             id: "t4",
             name: transactionName,
-            owne: "Sadia Bruce",
+            owner: "Sadia Bruce",
             amount: transactionAmount
         };
 
@@ -129,7 +129,6 @@ const GroupView = (props) => {
     }
 
     const navigate = useNavigate();
-
 
     const transactionList = groupTransactions.map((transaction) => (
         <div className="list-item d-flex flex-row justify-content-between" key={transaction.id} onClick={() => handleShowDetails(transaction)} >
@@ -235,13 +234,16 @@ const GroupView = (props) => {
                     <Modal.Title>Close group</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="p-4">
+                    <div>
+                        Are you sure you want to close this group?
+                    </div>
                 </Modal.Body>
-                <Modal.Footer className="justify-content-center">
-                    <Button className="btn btn-primary btn-icon my-1" onClick={playMinigame}>
+                <Modal.Footer className="justify-content-center border-0">
+                    <Button className="btn btn-primary btn-icon mb-2" onClick={playMinigame}>
                         Play minigame
                         <img src="./assets/img/icons/check.svg" />
                     </Button>
-                    <Button className="btn btn-dark btn-icon my-1" onClick={addTransaction}>
+                    <Button className="btn btn-dark btn-icon" onClick={addTransaction}>
                         Split equally
                         <img src="./assets/img/icons/cash-multiple.svg" />
                     </Button>
