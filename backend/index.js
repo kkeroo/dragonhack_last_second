@@ -190,7 +190,7 @@ const updateGroupBudget = (groupId, price) => {
                 }
                 let newBudget = budget - price;
                 db.collection('groups').doc(groupId).update({ budget: newBudget }).then(() => {
-                    resolve('Budget updated from ' + budget + ' to ' + newBudget);
+                    resolve('Budget up dated from ' + budget + ' to ' + newBudget);
                 }).catch(err => {
                     reject('Error updating field budget', err);
                 });
@@ -202,7 +202,7 @@ const updateGroupBudget = (groupId, price) => {
 }
 
 app.post('/expenses', (req, res) => {
-    let expense = {
+    let expense = { 
         uid: req.body.uid,
         groupId: req.body.groupId,
         expenseTitle: req.body.expenseTitle,
