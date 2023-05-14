@@ -24,18 +24,18 @@ const Menu = (props) => {
         <div>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container">
-                    <a className="navbar-brand" href="" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
+                    <a className="navbar-brand" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
                         <img src={logo} height="15"/>
                     </a>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link" href="" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
+                                <a className="nav-link" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
                                     Groups
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href='#' onClick={handleSignout}>
+                                <a className="nav-link" onClick={handleSignout}>
                                     Signout
                                 </a>
                             </li>
@@ -55,10 +55,10 @@ const Menu = (props) => {
                             <img src={menuCloser} className="img-fluid" width="32" id="mobileMenuCloser" onClick={closeMenu} />
                         </div>
                         <div className="mobile-menu__links d-flex flex-column text-center">
-                            <a className="link mb-3" href="" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
+                            <a className="link mb-3" onClick={() => {window.location.href = 'http://localhost:3000/home'}}>
                                 Groups
                             </a>
-                            <a className="link mb-3" href="" onClick={handleSignout}>
+                            <a className="link mb-3" onClick={handleSignout}>
                                 Signout
                             </a>
                         </div>

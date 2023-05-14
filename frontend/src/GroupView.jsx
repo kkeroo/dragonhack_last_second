@@ -243,7 +243,7 @@ const GroupView = (props) => {
                         Play minigame
                         <img src="./assets/img/icons/check.svg" />
                     </Button>
-                    <Button as={Link} to="/redistribute" className="btn btn-dark btn-icon" onClick={addTransaction}>
+                    <Button className="btn btn-dark btn-icon" onClick={() => navigate('/redistribute')}>
                         Redistribute
                         <img src="./assets/img/icons/cash-multiple.svg" />
                     </Button>
